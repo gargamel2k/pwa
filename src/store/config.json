@@ -1,0 +1,7 @@
+{
+    "backEndUrl": "http://192.168.1.57:3050",
+    "backEndUrlHome": "http://192.168.1.66:3050",
+    "backEndUrlHome2": "http://192.168.1.57:3050",
+    "backEndUrlOfi": "http://10.55.159.167:3050",
+    "backEndUrliPhine": "http://172.20.10.2:3050"
+}
