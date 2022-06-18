@@ -1,67 +1,88 @@
 <template>
-
   <q-page>
-  
-
-    <div class="column bg-white">
+    <div v-if="totalItems > 0" class="column bg-white">
       <span class="text-h6 text-center text-weight-bold"
         >Lista de llamadas ({{ totalItems }})</span
       >
-  
-      <div class="row q-pa-md q-mt-none q-mb-sm flex-center ">
+
+      <div class="row q-pa-md q-mt-none q-mb-sm flex-center">
         <q-pagination
-          size="20px"
-          glossy
+          size="15px"
           input-class="text-black q-mx-sm"
           v-model="currentPage"
           :max="totalPages"
           input
+          dense
         />
       </div>
-  
+
+      <q-virtual-scroll :items="cartas" separator v-slot="{ item, index }">
+        <q-card :key="index" flat class="my-card q-mx-md q-mb-xs q-pa-sm">
+          <div class="row">
+            <div class="col-4">
+              <q-chip
+                dense
+                clickable
+                @click="onClickCarta(item.pk)"
+                square
+                dark
+                :color="getColorPrioridad(item.prioridad - 1)"
+              >
+                {{ item.idCarta }}
+              </q-chip>
+            </div>
+            <div class="col column">
+              <span class="text-bold">{{ item.descTipificacion }}</span>
+              <span>{{ item.calle }}, {{ item.portal }}</span>
+            </div>
+            <div class="col-1">
+              <q-chip
+                square
+                dark
+                :color="getColorPrioridad(item.prioridad - 1)"
+              >
+                <span>{{ item.prioridad }}</span>
+              </q-chip>
+            </div>
+          </div>
+        </q-card>
+      </q-virtual-scroll>
+
+      <!--
       <q-card
         v-for="carta in cartas"
         :key="carta.pk"
         flat
-        class="my-card q-mx-md q-mb-md q-pa-sm"
+        class="my-card q-mx-md q-mb-xs q-pa-sm"
       >
         <div class="row">
           <div class="col-4">
-            
-              <q-chip 
-                dense
-                clickable
-                @click="onClickCarta(carta.pk)"
-                square
-                dark
-                :color="getColorPrioridad(carta.prioridad - 1)"
-              >
-                {{ carta.idCarta }}
-              </q-chip>
-            
-  
+            <q-chip
+              dense
+              clickable
+              @click="onClickCarta(carta.pk)"
+              square
+              dark
+              :color="getColorPrioridad(carta.prioridad - 1)"
+            >
+              {{ carta.idCarta }}
+            </q-chip>
           </div>
           <div class="col column">
             <span class="text-bold">{{ carta.descTipificacion }}</span>
             <span>{{ carta.calle }}, {{ carta.portal }}</span>
           </div>
           <div class="col-1">
-            <q-chip
-              dense
-              square
-              dark
-              :color="getColorPrioridad(carta.prioridad - 1)"
-            >
+            <q-chip square dark :color="getColorPrioridad(carta.prioridad - 1)">
               <span>{{ carta.prioridad }}</span>
             </q-chip>
           </div>
         </div>
       </q-card>
+-->
     </div>
   </q-page>
-
 </template>
-
 
 <script>
 import useCartas from "../composables/useCartas";

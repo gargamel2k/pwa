@@ -1,56 +1,47 @@
 <template>
-  <div class="column bg-white">
-    <span class="text-h6 text-center q-ma-md text-weight-bold"
+  <div v-if="totalItems > 0" class="column bg-white">
+    <span class="text-h6 text-center q-ma-xs text-weight-bold"
       >Lista de Espedientes ({{ totalItems }})</span
     >
 
-    <div class="row q-pa-md q-mt-none q-mb-sm flex-center bg-dark">
+    <div class="row q-pa-xs q-mt-none q-mb-sm flex-center">
       <q-pagination
-        size="20px"
-        glossy
-        input-class="text-white q-mx-sm"
+        dense
         v-model="currentPage"
+        size="15px"
         :max="totalPages"
-        input
+        color="deep-orange"
+        boundary-links
       />
     </div>
 
-    <q-card
-      v-for="expediente in expedientes"
-      :key="expediente.pk"
-      flat
-      class="my-card q-mx-md q-mb-md q-pa-sm"
-    >
-      <div class="row">
-        <div class="col-4">
-          <q-chip
-            dense
-            square
-            dark
-            :color="getColorPrioridad(expediente.prioridad - 1)"
-          >
-            {{ expediente.idExpediente }}
-          </q-chip>
+    <q-virtual-scroll :items="expedientes" separator v-slot="{ item, index }">
+      <q-card :key="index" flat class="my-card q-mx-md q-mb-xs q-pa-md">
+        <div class="row">
+          <div class="col-4">
+            <q-chip
+              square
+              dense
+              dark
+              :color="getColorPrioridad(item.prioridad - 1)"
+            >
+              {{ item.idExpediente }}
+            </q-chip>
+          </div>
+          <div class="col column">
+            <span class="text-bold">{{ item.descTipificacion }}</span>
+            <span>{{ item.calle }}, {{ item.portal }}</span>
+          </div>
+          <div class="col-1">
+            <q-chip square dark :color="getColorPrioridad(item.prioridad - 1)">
+              <span>{{ item.prioridad }}</span>
+            </q-chip>
+          </div>
         </div>
-        <div class="col column">
-          <span class="text-bold">{{ expediente.descTipificacion }}</span>
-          <span>{{ expediente.calle }}, {{ expediente.portal }}</span>
-        </div>
-        <div class="col-1">
-          <q-chip
-            dense
-            square
-            dark
-            :color="getColorPrioridad(expediente.prioridad - 1)"
-          >
-            <span>{{ expediente.prioridad }}</span>
-          </q-chip>
-        </div>
-      </div>
-    </q-card>
+      </q-card>
+    </q-virtual-scroll>
   </div>
 </template>
-
 
 <script>
 import useExpedientes from "../composables/useExpedientes";
@@ -100,4 +91,3 @@ export default {
   background-color: rgb(236, 236, 236);
 }
 </style>
-
