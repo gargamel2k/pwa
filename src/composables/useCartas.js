@@ -6,8 +6,6 @@ import { useRouter } from 'vue-router';
 
 
 
-
-
 const useCartas = () => {
 
     // Data
@@ -16,8 +14,8 @@ const useCartas = () => {
     let cartas = ref()
     let totalItems = ref(0)
     let totalPages = ref(0)
-    const store = useStore();
 
+    const store = useStore();
     const router = useRouter();
 
 
@@ -29,7 +27,7 @@ const useCartas = () => {
 
     const onClickCarta = (pk) => {
 
-        router.push({ path: '/det_carta', params: { id: pk } });
+        router.push({ name: 'det_carta', params: { id: pk } });
     }
 
     // -----------------------------------------

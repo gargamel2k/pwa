@@ -1,5 +1,14 @@
 <template>
-  <q-page>
+  <q-page class="flex flex-center">
+    <div class="column items-center" v-if="totalItems == 0">
+      <q-circular-progress
+        indeterminate
+        size="50px"
+        color="lime"
+        class="q-ma-md"
+      />
+      Espere un momento ...
+    </div>
     <div v-if="totalItems > 0" class="column bg-white">
       <span class="text-h6 text-center text-weight-bold"
         >Lista de llamadas ({{ totalItems }})</span
