@@ -41,6 +41,7 @@ const routes = [{
             },
             {
                 path: 'det_expediente',
+                name: "det_expediente",
                 component: () =>
                     import ('pages/DetalleExpediente.vue')
             }

@@ -9,7 +9,7 @@
       />
       Espere un momento ...
     </div>
-    <div v-if="totalItems > 0" class="column bg-white">
+    <div v-if="totalItems > 0" class="column bg-white" style="width: 100%">
       <span class="text-h6 text-center text-weight-bold"
         >Lista de llamadas ({{ totalItems }})</span
       >
@@ -56,39 +56,6 @@
           </div>
         </q-card>
       </q-virtual-scroll>
-
-      <!--
-      <q-card
-        v-for="carta in cartas"
-        :key="carta.pk"
-        flat
-        class="my-card q-mx-md q-mb-xs q-pa-sm"
-      >
-        <div class="row">
-          <div class="col-4">
-            <q-chip
-              dense
-              clickable
-              @click="onClickCarta(carta.pk)"
-              square
-              dark
-              :color="getColorPrioridad(carta.prioridad - 1)"
-            >
-              {{ carta.idCarta }}
-            </q-chip>
-          </div>
-          <div class="col column">
-            <span class="text-bold">{{ carta.descTipificacion }}</span>
-            <span>{{ carta.calle }}, {{ carta.portal }}</span>
-          </div>
-          <div class="col-1">
-            <q-chip square dark :color="getColorPrioridad(carta.prioridad - 1)">
-              <span>{{ carta.prioridad }}</span>
-            </q-chip>
-          </div>
-        </div>
-      </q-card>
--->
     </div>
   </q-page>
 </template>
@@ -116,8 +83,6 @@ export default {
       totalPages,
       valorContador,
       onClickCarta,
-      incrementar,
-      decrementar,
     } = useCartas();
 
     // Retornamos lo que usamos en el template
@@ -128,8 +93,6 @@ export default {
       currentPage,
       valorContador,
       onClickCarta,
-      incrementar,
-      decrementar,
       getColorPrioridad: (index) => {
         return utils.getColorPrioridad(index);
       },

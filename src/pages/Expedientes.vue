@@ -10,7 +10,7 @@
       Espere un momento ...
     </div>
 
-    <div v-if="totalItems > 0" class="column bg-white">
+    <div v-if="totalItems > 0" class="column bg-white" style="width: 100%">
       <span class="text-h6 text-center q-ma-xs text-weight-bold"
         >Lista de Espedientes ({{ totalItems }})</span
       >
@@ -33,7 +33,9 @@
               <q-chip
                 square
                 dense
+                clickable
                 dark
+                @click="onClickExpediente(item.pk)"
                 :color="getColorPrioridad(item.prioridad - 1)"
               >
                 {{ item.idExpediente }}
@@ -81,8 +83,7 @@ export default {
       currentPage,
       totalPages,
       valorContador,
-      incrementar,
-      decrementar,
+      onClickExpediente,
     } = useExpedientes();
 
     // Retornamos lo que usamos en el template
@@ -92,8 +93,7 @@ export default {
       totalPages,
       currentPage,
       valorContador,
-      incrementar,
-      decrementar,
+      onClickExpediente,
       getColorPrioridad: (index) => {
         return utils.getColorPrioridad(index);
       },

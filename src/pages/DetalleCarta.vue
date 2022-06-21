@@ -19,7 +19,7 @@
         :color="getColorPrioridad(datosCarta.prioridad - 1)"
         class="idCarta q-mb-xd"
         dark
-        >{{ datosCarta.idCarta }}</q-chip
+        >Llamada ID: {{ datosCarta.idCarta }}</q-chip
       >
 
       <q-card class="ficha q-mb-xs q-pa-md" flat>
@@ -140,11 +140,10 @@ export default defineComponent({
     console.log(route);
 
     // Obtengo loq que necesito del composable
-    const { valor, datosCarta, anotacionesCarta } = useDetalleCarta(1);
+    const { datosCarta, anotacionesCarta } = useDetalleCarta(1);
 
     // Retornamos lo que usamos en el template
     return {
-      valor,
       datosCarta,
       anotacionesCarta,
       getColorPrioridad: (index) => {
