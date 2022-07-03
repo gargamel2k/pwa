@@ -19,7 +19,6 @@ const useDetalleCarta = () => {
     const store = useStore();
     const router = useRouter();
 
-
     // computed
 
 

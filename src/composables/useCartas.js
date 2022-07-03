@@ -36,6 +36,7 @@ const useCartas = () => {
 
     const obtieneListadoCartas = () => {
 
+
         console.log("obteniendo cartas " + currentPage.value);
 
         const url = store.state.backEndUrl + "/cartas"
